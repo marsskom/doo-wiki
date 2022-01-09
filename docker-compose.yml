@@ -1,0 +1,102 @@
+version: '3'
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: doowiki/app
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini:ro
+    networks:
+      - app-network
+    depends_on:
+      - db
+      - redis
+
+  varnish:
+    image: varnish:stable
+    container_name: varnish
+    volumes:
+      - ./docker/varnish/default.vcl:/etc/varnish/default.vcl
+    ports:
+      - "80:80"
+      - "8443:8443"
+    tmpfs:
+      - /var/lib/varnish:exec
+    environment:
+      - VARNISH_SIZE=2G
+    command: "-p default_keep=300"
+    networks:
+      - app-network
+    depends_on:
+      - webserver
+
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/crt/dhparam.pem:/etc/ssl/certs/dhparam.pem
+      - ./docker/nginx/crt/private.crt:/etc/ssl/certs/nginx-selfsigned.crt
+      - ./docker/nginx/crt/private.key:/etc/ssl/private/nginx-selfsigned.key
+    networks:
+      - app-network
+    depends_on:
+      - app
+
+  db:
+    image: mariadb
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: lumen
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: db
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    container_name: redis
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
+  redis_data:
+    driver: local
