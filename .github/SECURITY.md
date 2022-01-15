@@ -8,4 +8,5 @@
 
 ## Reporting a Vulnerability
 
-Please report security vulnerabilities to marsskom+doowiki@gmail.com. Start email theme with "RAV: ". Thanks a lot!
+Please report security vulnerabilities in PRs and Issues. Please, marked it with label "vulnerability"
+Thanks a lot!
