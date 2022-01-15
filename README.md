@@ -34,3 +34,16 @@ TODO:
 ### JS
 
 TODO:
+
+## Contributing
+
+[Full Description](.github/CONTRIBUTING.md)
+
+Helpful files:
+ - [Issue template](.github/ISSUE_TEMPLATE.md)
+ - [Pull request template](.github/PULL_REQUEST_TEMPLATE.md)
+
+## Contributors
+
+- Andrii Prakapas (Me)
+- Vladyslav Fedorov
