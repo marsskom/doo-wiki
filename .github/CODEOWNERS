@@ -1,0 +1,16 @@
+# App
+/app/ @marsskom
+/public/ @marsskom
+# Bootstrap
+/bootstrap/ @marsskom
+# Database
+/database/ @marsskom
+# Resources
+/resources/ @marsskom
+# Routes
+/routes/ @marsskom
+# Tests
+/tests/ @marsskom
+
+# Other files
+* @marsskom
