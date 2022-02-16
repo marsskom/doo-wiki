@@ -45,7 +45,7 @@
         ],
         "test": "./vendor/bin/phpunit",
         "phpcs": "./vendor/bin/phpcs phpcs.xml",
-        "phpmd": "php -d display_errors=off ./vendor/bin/phpmd . github phpmd.ruleset.xml --exclude 'tests/*,vendor/*'",
+        "phpmd": "php -d display_errors=off ./vendor/bin/phpmd . github phpmd.ruleset.xml --exclude 'tests/*,vendor/*,node_modules/*'",
         "phpstan": "./vendor/bin/phpstan analyse app tests",
         "psalm": "./vendor/bin/psalm app/ tests/"
     }
