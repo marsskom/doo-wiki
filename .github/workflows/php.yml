@@ -18,7 +18,7 @@ jobs:
         with:
           php-version: 8.1
           extensions: none, ctype, curl, date, dom, json, libxml, mbstring, pdo_mysql, phar, simplexml, soap, tokenizer, xml, xmlwriter, zlib, bcmath, intl
-          coverage: none
+          coverage: xdebug
           tools: none
 
       - name: Validate composer.json and composer.lock
@@ -38,6 +38,15 @@ jobs:
 
       - name: Run test suite
         run: composer run-script test
+
+      - name: Upload Code Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./reports/coverage_clover.xml
+          flags: unit_tests
+          fail_ci_if_error: true
+          verbose: true
 
       - name: Chmod security checker
         run: chmod +x security-checker
