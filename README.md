@@ -1,5 +1,7 @@
 # Doo-wiki
 
+[![codecov](https://codecov.io/gh/marsskom/doo-wiki/branch/master/graph/badge.svg)](https://codecov.io/gh/marsskom/doo-wiki)
+
 The tool for create the requirements for project which are based on the visual information.
 
 

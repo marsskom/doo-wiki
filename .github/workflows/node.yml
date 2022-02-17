@@ -23,4 +23,18 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - run: yarn test --watchAll=false
+
+      - name: Run tests
+        run: yarn test --watchAll=false
+
+      - name: Run tests coverage
+        run: yarn test --coverage --watchAll=false --collectCoverageFrom="./src/**"
+
+      - name: Upload Code Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+          flags: react_unit_tests
+          fail_ci_if_error: true
+          verbose: true
