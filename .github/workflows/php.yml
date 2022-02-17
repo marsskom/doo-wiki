@@ -37,7 +37,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run test suite
-        run: composer run-script test
+        run: composer test
 
       - name: Upload Code Coverage to Codecov
         uses: codecov/codecov-action@v2

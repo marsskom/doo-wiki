@@ -43,7 +43,7 @@
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
-        "test": "php -n -dzend_extension=xdebug -dxdebug.mode=coverage ./vendor/bin/phpunit",
+        "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit",
         "phpcs": "./vendor/bin/phpcs phpcs.xml",
         "phpmd": "php -d display_errors=off ./vendor/bin/phpmd . github phpmd.ruleset.xml --exclude 'tests/*,vendor/*,node_modules/*'",
         "phpstan": "./vendor/bin/phpstan analyse app tests",
