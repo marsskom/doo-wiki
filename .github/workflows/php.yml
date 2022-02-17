@@ -17,9 +17,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1
-          extensions: none, ctype, curl, date, dom, json, libxml, mbstring, pdo_mysql, phar, simplexml, soap, tokenizer, xml, xmlwriter, zlib, bcmath, intl
+          extensions: common, ctype, curl, date, dom, json, libxml, mbstring, pdo_mysql, phar, simplexml, soap, tokenizer, xml, xmlwriter, zlib, bcmath, intl
           coverage: xdebug
-          tools: none
+          tools: phpunit
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
