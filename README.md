@@ -1,6 +1,6 @@
 # Doo-wiki
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md) 
 [![codecov](https://codecov.io/gh/marsskom/doo-wiki/branch/master/graph/badge.svg)](https://codecov.io/gh/marsskom/doo-wiki)
 
 The tool for create the requirements for project which are based on the visual information.
