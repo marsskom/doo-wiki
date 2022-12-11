@@ -49,4 +49,3 @@ Helpful files:
 ## Contributors
 
 - Andrii Prakapas (Me)
-- Vladyslav Fedorov
